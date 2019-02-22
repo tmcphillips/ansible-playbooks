@@ -1,5 +1,5 @@
 #!/bin/bash
-function setup_system_for_ansible {
+function bootstrap_ansible_in_wsl_debian {
 
     # install OS-level dependencies of ansible
     apt update
@@ -11,6 +11,9 @@ function setup_system_for_ansible {
     . ansible-venv/bin/activate
     pip install ansible
     deactivate
+
+    # clone the ansible-playbooks repo
+    #git clone https://github.com/tmcphillips/ansible-playbooks.git
 }
 
-setup_system_for_ansible
+bootstrap_ansible_in_wsl_debian
