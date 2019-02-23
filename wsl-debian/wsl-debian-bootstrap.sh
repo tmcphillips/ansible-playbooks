@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# Run this script from a new WSL Debian environment using curl:
+#
+#   sudo apt update
+#   sudo apt install curl
+#   curl https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/wsl-debian-bootstrap.sh | sudo bash
+
 function bootstrap_ansible_in_wsl_debian {
 
     # install OS-level dependencies of ansible
@@ -10,10 +17,13 @@ function bootstrap_ansible_in_wsl_debian {
     virtualenv ansible-venv --system-site-packages
     . ansible-venv/bin/activate
     pip install ansible
-    deactivate
+
+    # download the git installation playbook and run
+    curl https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/git.yml -o /tmp/git.yml
+    ansible-playbook -K /tmp/git.yml
 
     # clone the ansible-playbooks repo
-    #git clone https://github.com/tmcphillips/ansible-playbooks.git
+    git clone https://github.com/tmcphillips/ansible-playbooks.git
 }
 
 bootstrap_ansible_in_wsl_debian
