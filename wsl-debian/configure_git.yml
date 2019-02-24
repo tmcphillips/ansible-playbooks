@@ -7,9 +7,10 @@
   tasks:
   - name: 
     shell: |
-      git config --global core.fileMode false                       # ignore file permission changes in local clone  
       git config --global user.email "tmcphillips@absoluteflow.com"
       git config --global user.name "Timothy McPhillips"
+      git config --global core.fileMode false                       # ignore file permission changes in local clone  
+      git config --global core.eol lf                               # force all line-endings to LF on checkout
+      git config --global core.autocrlf input                       # convert CRLF line-endings to LF on commit
 
-      git config --global core.eol lf
-      git config --global core.autocrlf input
+      # git checkout-index --force --all
