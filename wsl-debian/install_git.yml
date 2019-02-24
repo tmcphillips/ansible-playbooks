@@ -1,0 +1,14 @@
+---
+
+- name: install git on localhost
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+  - name: install git
+    apt:
+        name: git
+        update_cache: yes
+        state: present
+  - name: congure git
+    command: git config --global core.fileMode false  

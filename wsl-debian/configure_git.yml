@@ -1,0 +1,15 @@
+---
+
+- name: configure git for user
+  hosts: 127.0.0.1
+  connection: local
+  become: no
+  tasks:
+  - name: 
+    shell: |
+      git config --global core.fileMode false                       # ignore file permission changes in local clone  
+      git config --global user.email "tmcphillips@absoluteflow.com"
+      git config --global user.name "Timothy McPhillips"
+
+      git config --global core.eol lf
+      git config --global core.autocrlf input
