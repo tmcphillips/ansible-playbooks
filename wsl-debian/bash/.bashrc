@@ -1,6 +1,4 @@
 # load environment common to all platforms
-for filename in .bashrc.d/*; do
+for filename in .bashrc_d/*; do
     source $filename
 done
-
-export CDPATH=/c/Users/tmcphill

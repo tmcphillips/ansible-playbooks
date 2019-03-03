@@ -37,9 +37,16 @@ function bootstrap_wsl_debian {
     fi
 
     # clone the ansible-playbooks repo if not already present
+    PLAYBOOKS_REPO=${GITREPOS}/ansible-playbooks
     if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
-        git clone git@github.com:tmcphillips/ansible-playbooks.git ${GITREPOS}/ansible-playbooks
+        git clone git@github.com:tmcphillips/ansible-playbooks.git ${PLAYBOOKS_REPO}
     fi
+    PLAYBOOKS=${PLAYBOOKS_REPO}/wsl-debian
+
+    # copy bash configuration from playbooks repo
+    mkdir -p ${HOME}/.bashrc_d
+    cp ${PLAYBOOKS}/bash/.bashrc ${HOME}/.bashrc
+    cp ${PLAYBOOKS}/bash/*.sh {HOME}/.bashrc_d/
 }
 
 bootstrap_wsl_debian
