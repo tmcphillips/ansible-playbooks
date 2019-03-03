@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Invoke this script in new WSL Debian environment after manually installing curl:
-#   sudo apt update; apt install -y curl
-#   curl https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/wsl-debian-bootstrap.sh | sudo bash
+# Invoke this script in new WSL Debian environment:
+# wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/wsl-debian-bootstrap.sh -q -O- | sudo bash
 
 function bootstrap_ansible_in_wsl_debian {
 
