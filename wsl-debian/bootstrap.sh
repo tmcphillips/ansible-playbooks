@@ -46,7 +46,7 @@ function bootstrap_wsl_debian {
     # copy bash configuration from playbooks repo
     mkdir -p ${HOME}/.bashrc_d
     cp ${PLAYBOOKS}/bash/.bashrc ${HOME}/.bashrc
-    cp ${PLAYBOOKS}/bash/*.sh {HOME}/.bashrc_d/
+    cp ${PLAYBOOKS}/bash/*.sh ${HOME}/.bashrc_d/
 }
 
 bootstrap_wsl_debian
