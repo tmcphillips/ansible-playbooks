@@ -5,7 +5,7 @@
 #   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/bootstrap.sh -O bootstrap.sh
 #   bash bootstrap.sh
 
-function bootstrap_ansible_in_wsl_debian {
+function bootstrap_wsl_debian {
 
     # request user password for invoking commands using sudo
     read -s -p "Enter your WSL Debian account password for using sudo: " password
@@ -22,11 +22,19 @@ function bootstrap_ansible_in_wsl_debian {
     source .venv-ansible-playbooks/bin/activate
     pip install ansible
 
+    # compute location home directory of corresponding Windows account
+    WINHOME=/mnt/c/Users/${USER}
+
+    # share the .ssh directory with the matching Windows account
+    if [ ! -L .ssh ]; then
+        ln -s ${WINHOME}/.ssh .ssh
+    fi
     # clone the ansible-playbooks repo in the Windows user home directory tree if needed
-    if [ ! -d "/mnt/c/Users/tmcphill/GitRepos/ansible-playbooks" ]; then
-        mkdir -p /mnt/c/Users/tmcphill/GitRepos/
-        git clone https://github.com/tmcphillips/ansible-playbooks.git /mnt/c/Users/tmcphill/GitRepos/ansible-playbooks
+    GITREPOS=${WINHOME}/GitRepos
+    if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
+        mkdir -p ${GITREPOS}
+        git clone git@github.com:tmcphillips/ansible-playbooks.git ${GITREPOS}/ansible-playbooks
     fi
 }
 
-bootstrap_ansible_in_wsl_debian
+bootstrap_wsl_debian
