@@ -22,17 +22,22 @@ function bootstrap_wsl_debian {
     source .venv-ansible-playbooks/bin/activate
     pip install ansible
 
-    # compute location home directory of corresponding Windows account
+    # compute location of home directory of corresponding Windows account
     WINHOME=/mnt/c/Users/${USER}
 
-    # share the .ssh directory with the matching Windows account
-    if [ ! -L .ssh ]; then
-        ln -s ${WINHOME}/.ssh .ssh
+    # share the .ssh directory with the one in the home directory of the corresponding Windows account
+    if [ ! -L ${HOME}/.ssh ]; then
+        ln -s ${WINHOME}/.ssh ${HOME}/.ssh
     fi
-    # clone the ansible-playbooks repo in the Windows user home directory tree if needed
+
+    # share the GitRepos directory with the one in the home directory of the corresponding Windows account
     GITREPOS=${WINHOME}/GitRepos
+    if [ ! -L ${HOME}/GitRepos ]; then
+        ln -s ${GITREPOS} ${HOME}/GitRepos
+    fi
+
+    # clone the ansible-playbooks repo if not already present
     if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
-        mkdir -p ${GITREPOS}
         git clone git@github.com:tmcphillips/ansible-playbooks.git ${GITREPOS}/ansible-playbooks
     fi
 }
