@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Run this script from a new WSL Debian environment using curl:
-#
-#   sudo apt update
-#   sudo apt install curl
+# Invoke this script in new WSL Debian environment after manually installing curl:
+#   sudo apt update; apt install -y curl
 #   curl https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/wsl-debian-bootstrap.sh | sudo bash
 
 function bootstrap_ansible_in_wsl_debian {
 
     # install OS-level dependencies of ansible
-    apt update
-    apt-get -y install python-pip python-dev libffi-dev libssl-dev   
+    apt update; apt-get -y install python-pip python-dev libffi-dev libssl-dev   
 
     # install ansible in a Python virtual environment
     pip install virtualenv
