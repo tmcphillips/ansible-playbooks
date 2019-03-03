@@ -1,21 +1,17 @@
 ---
 
-- name: install git on localhost
+- name: install and configure git
   hosts: 127.0.0.1
   connection: local
   become: yes
   tasks:
+  
   - name: install git
     apt:
         name: git
         update_cache: yes
         state: present
 
-- name: configure git for user
-  hosts: 127.0.0.1
-  connection: local
-  become: no
-  tasks:
   - name:
     shell: |
       git config --global user.email "tmcphillips@absoluteflow.com"
@@ -23,5 +19,3 @@
       git config --global core.fileMode false                       # ignore file permission changes in local clone
       git config --global core.eol lf                               # force all line-endings to LF on checkout
       git config --global core.autocrlf input                       # convert CRLF line-endings to LF on commit
-
-      # git checkout-index --force --all
