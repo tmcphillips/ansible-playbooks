@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Invoke this script in new WSL Debian environment:
-# wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/bootstrap.sh -q -O- | bash
+#   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/wsl-debian/bootstrap.sh -O bootstrap.sh
+#   bash bootstrap.sh
 
 function bootstrap_ansible_in_wsl_debian {
 
@@ -12,7 +13,7 @@ function bootstrap_ansible_in_wsl_debian {
     echo $password | sudo -S apt-get -y install git python-pip python-dev libffi-dev libssl-dev
 
     # install ansible in a Python virtual environment
-    pip install virtualenv
+    echo $password | sudo -S pip install virtualenv
     virtualenv ansible-venv --system-site-packages
     . ansible-venv/bin/activate
     pip install ansible
