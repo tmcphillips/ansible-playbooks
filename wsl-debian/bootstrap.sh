@@ -25,8 +25,7 @@ function bootstrap_ansible_in_wsl_debian {
     # clone the ansible-playbooks repo in the Windows user home directory tree if needed
     if [ ! -d "/mnt/c/Users/tmcphill/GitRepos/ansible-playbooks" ]; then
         mkdir -p /mnt/c/Users/tmcphill/GitRepos/
-        cd /mnt/c/Users/tmcphill/GitRepos/
-        git clone https://github.com/tmcphillips/ansible-playbooks.git
+        git clone https://github.com/tmcphillips/ansible-playbooks.git /mnt/c/Users/tmcphill/GitRepos/ansible-playbooks
     fi
 }
 
