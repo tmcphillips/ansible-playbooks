@@ -6,7 +6,7 @@
 function bootstrap_ansible_in_wsl_debian {
 
     # install OS-level dependencies of ansible
-    apt update; apt-get -y install python-pip python-dev libffi-dev libssl-dev   
+    apt update; apt-get -y install curl python-pip python-dev libffi-dev libssl-dev
 
     # install ansible in a Python virtual environment
     pip install virtualenv
