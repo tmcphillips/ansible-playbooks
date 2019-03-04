@@ -3,10 +3,10 @@
 - name: install and configure git
   hosts: 127.0.0.1
   connection: local
-  become: yes
   tasks:
   
   - name: install git
+    become: yes
     apt:
         name: git
         update_cache: yes
