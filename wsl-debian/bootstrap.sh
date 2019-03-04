@@ -8,7 +8,7 @@
 function bootstrap_wsl_debian {
 
     # request user password for invoking commands using sudo
-    read -s -p "Enter your WSL Debian account password for using sudo: " password
+    read -s -p "SUDO password: " password
 
     # install git and OS-level dependencies of ansible
     echo $password | sudo -S apt update

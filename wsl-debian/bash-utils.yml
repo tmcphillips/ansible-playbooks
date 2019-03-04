@@ -1,0 +1,16 @@
+---
+
+- name: install Bash command-line utilities
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+  
+  - name: install command-line utilities
+    apt:
+        name: 
+          - tree
+          - curl
+        update_cache: yes
+        state: latest
+
