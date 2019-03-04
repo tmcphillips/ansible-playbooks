@@ -44,8 +44,8 @@ function bootstrap_wsl_debian {
     PLAYBOOKS=${PLAYBOOKS_REPO}/wsl-debian
 
     # link bash configuration file and directory to live playbooks repo
-    ln -s ${PLAYBOOKS}/bashrc_d/.bashrc ${HOME}/.bashrc 
-    ln -s ${PLAYBOOKS}/bashrc_d/ ${HOME}/bashrc_d
+    rm -f ${HOME}/bashrc_d ; ln -s ${PLAYBOOKS}/bashrc_d    ${HOME}/bashrc_d
+    rm -f ${HOME}/.bashrc  ; ln -s ${HOME}/bashrc_d/.bashrc ${HOME}/.bashrc
 }
 
 bootstrap_wsl_debian
