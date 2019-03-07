@@ -9,8 +9,9 @@
   - name: install command-line utilities
     apt:
         name: 
-          - tree
           - curl
+          - jq
+          - tree
         update_cache: yes
         state: latest
 
