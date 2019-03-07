@@ -1,0 +1,14 @@
+---
+
+- name: install jd
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+  
+  - name: download and install jd v1.1 executable
+    get_url:
+        url: https://github.com/josephburnett/jd/releases/download/v1.1/jd
+        dest: /usr/local/bin
+        mode: 0555
+
