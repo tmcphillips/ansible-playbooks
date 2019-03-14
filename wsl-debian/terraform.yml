@@ -1,0 +1,19 @@
+---
+
+- name: install Terraform
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+  
+  - name: download and expand terraform 0.11.13
+    unarchive:
+        remote_src: yes
+        src: https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+        dest: /usr/local/bin
+
+  - name: link ~/.aws directory to Windows account
+    shell: |
+      if [ ! -L {{ lookup('env','HOME') }}/.aws ]; then
+        ln -s {{ lookup('env','WINHOME') }}/.aws {{ lookup('env','HOME') }}/.aws
+      fi

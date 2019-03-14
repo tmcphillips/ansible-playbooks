@@ -12,7 +12,7 @@
         update_cache: yes
         state: latest
 
-  - name:
+  - name: configure global git settings
     shell: |
       git config --global user.email "tmcphillips@absoluteflow.com"
       git config --global user.name "Timothy McPhillips"
