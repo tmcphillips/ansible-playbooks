@@ -21,7 +21,7 @@ function bootstrap_common_debian {
     virtualenv .venv-ansible-playbooks --system-site-packages
     source .venv-ansible-playbooks/bin/activate
     pip install ansible
-    deactivatef
+    deactivate
 }
 
 function bootstrap_vagrant_debian {
