@@ -12,7 +12,7 @@
         update_cache: yes
         state: latest
 
-  - name: download and expand terraform 0.11.13
+  - name: download and expand terraform binary
     unarchive:
         remote_src: yes
         src: https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
