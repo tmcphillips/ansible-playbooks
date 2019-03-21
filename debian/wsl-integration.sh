@@ -26,13 +26,13 @@ function integrate_with_wsl {
     if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
         git clone git@github.com:tmcphillips/ansible-playbooks.git ${PLAYBOOKS_REPO}
     fi
-    PLAYBOOKS=${PLAYBOOKS_REPO}/debian-wsl
+    PLAYBOOKS=${PLAYBOOKS_REPO}/debian
 
     # install custom .bashrc file and create .bashrc.d directory
-    cp bashrc_d/.bashrc-wsl ${HOME}/.bashrc
+    cp ${PLAYBOOKS}/bashrc_d/wsl.bashrc ${HOME}/.bashrc
     BASHRC_D=${HOME}/.bashrc.d
     mkdir -p ${BASHRC_D}
-    cp bashrc_d/customize_bash.sh ${BASHRC_D}
+    cp ${PLAYBOOKS}/bashrc_d/customize_bash.sh ${BASHRC_D}
 }
 
 integrate_with_wsl
