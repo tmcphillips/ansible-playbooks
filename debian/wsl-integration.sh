@@ -10,6 +10,11 @@ function integrate_with_wsl {
         ln -s ${WINHOME}/.ssh ${HOME}/.ssh
     fi
 
+    # share the .aws directory with the one in the home directory of the corresponding Windows account
+    if [ ! -L ${HOME}/.aws ]; then
+        ln -s ${WINHOME}/.aws ${HOME}/.aws
+    fi
+
     # share the GitRepos directory with the one in the home directory of the corresponding Windows account
     GITREPOS=${WINHOME}/GitRepos
     if [ ! -L ${HOME}/GitRepos ]; then
@@ -23,10 +28,11 @@ function integrate_with_wsl {
     fi
     PLAYBOOKS=${PLAYBOOKS_REPO}/debian-wsl
 
-    # link bash configuration file and directory to live playbooks repo
+    # install custom .bashrc file and create .bashrc.d directory
     cp bashrc_d/.bashrc-wsl ${HOME}/.bashrc
-    mkdir -p ${HOME}/.bashrc.d
-    cp bashrc_d/customize_bash.sh ${HOME}/.bashrc.d
+    BASHRC_D=${HOME}/.bashrc.d
+    mkdir -p ${BASHRC_D}
+    cp bashrc_d/customize_bash.sh ${BASHRC_D}
 }
 
 integrate_with_wsl

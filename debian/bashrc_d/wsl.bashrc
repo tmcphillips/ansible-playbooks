@@ -6,6 +6,6 @@ export PLAYBOOKS_REPO=${GITREPOS}/ansible-playbooks
 export PLAYBOOKS=${PLAYBOOKS_REPO}/wsl-debian
 
 # load configuration files in bashrc_d
-for filename in bashrc_d/*; do
+for filename in .bashrc.d/*.sh; do
     source $filename
 done

@@ -17,9 +17,3 @@
         remote_src: yes
         src: https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
         dest: /usr/local/bin
-
-  - name: link ~/.aws directory to Windows account
-    shell: |
-      if [ ! -L {{ lookup('env','HOME') }}/.aws ]; then
-        ln -s {{ lookup('env','WINHOME') }}/.aws {{ lookup('env','HOME') }}/.aws
-      fi
