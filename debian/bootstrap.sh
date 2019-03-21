@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Download and invoke this script in a new WSL Debian environment:
+# Download and invoke this script in a new Debian environment:
 #
-#   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/vagrant-debian/bootstrap.sh -O bootstrap.sh
+#   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/debian/bootstrap.sh -O bootstrap.sh
 #   bash bootstrap.sh
 
 function bootstrap_ansible_on_debian {
@@ -17,17 +17,21 @@ function bootstrap_ansible_on_debian {
     # install virtualenv in the site-wide Python 2 environment
     echo $password | sudo -S pip install virtualenv
 
-    # create a temporary directory for remaining work
+    # create a temporary directory tree for remaining work
     BOOTSTRAP_TEMP_DIR=$(mktemp -d /tmp/bootstrap_ansible_XXXXXX)
-    cd $BOOTSTRAP_TEMP_DIR
 
-    # clone the ansible-playbooks repo into the temporary directory
-    git clone https://github.com/tmcphillips/ansible-playbooks.git $PLAYBOOKS_REPO
+    # clone the ansible-playbooks repo
+    ANSIBLE_PLAYBOOKS=${BOOTSTRAP_TEMP_DIR}/ansible-playbooks
+    git clone https://github.com/tmcphillips/ansible-playbooks.git $ANSIBLE_PLAYBOOKS
 
-    # install ansible in a new Python 2 virtual environment in the temporary directory
-    virtualenv .venv-ansible-playbooks --system-site-packages
-    source .venv-ansible-playbooks/bin/activate
+    # install ansible in a new Python 2 virtual environment
+    ANSIBLE_VENV=${BOOTSTRAP_TEMP_DIR}/ansible-venv
+    virtualenv ${ANSIBLE_VENV} --system-site-packages
+    source ${ANSIBLE_VENV}/bin/activate
     pip install ansible
+
+    # enter playbbooks directory
+    cd ${ANSIBLE_PLAYBOOKS}/debian
 }
 
 bootstrap_ansible_on_debian
