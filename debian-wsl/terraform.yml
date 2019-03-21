@@ -6,6 +6,12 @@
   become: yes
   tasks:
   
+  - name: insure unzip is installed
+    apt:
+        name: unzip
+        update_cache: yes
+        state: latest
+
   - name: download and expand terraform 0.11.13
     unarchive:
         remote_src: yes

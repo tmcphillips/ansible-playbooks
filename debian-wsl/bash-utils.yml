@@ -12,6 +12,7 @@
           - curl
           - jq
           - tree
+          - unzip
         update_cache: yes
         state: latest
 
