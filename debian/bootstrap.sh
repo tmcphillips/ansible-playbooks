@@ -3,7 +3,7 @@
 # Download and invoke this script in a new Debian environment:
 #
 #   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/debian/bootstrap.sh -O bootstrap.sh
-#   bash bootstrap.sh
+#   . bootstrap.sh
 
 function bootstrap_ansible_on_debian {
 
@@ -30,7 +30,7 @@ function bootstrap_ansible_on_debian {
     source ${ANSIBLE_VENV}/bin/activate
     pip install ansible
 
-    # enter playbbooks directory
+    # enter playbooks directory
     cd ${ANSIBLE_PLAYBOOKS}/debian
 }
 
