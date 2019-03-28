@@ -7,11 +7,8 @@ function integrate_with_wsl {
 
     # enable access to Unix permissions on files stored on mounted volumes
     echo $password | sudo cp etc/wsl.conf /etc/wsl.conf
-    echo
-    echo
-    echo "Restart the LxxsManager process via Windows Task Manager to effect changes to /etc/wsl.conf"
-    echo
-    
+    printf "\n\n* Restart the LxxsManager service via Windows Task Manager to effect changes to /etc/wsl.conf *\n\n"
+
     # compute location of home directory of corresponding Windows account
     WINHOME=/mnt/c/Users/${USER}
 
@@ -38,12 +35,12 @@ function integrate_with_wsl {
     fi
     DEBIAN_PLAYBOOKS=${PLAYBOOKS_REPO}/debian
 
-    # install ansible in a new Python 2 virtual environment with the debian playbooks
-    ANSIBLE_VENV_DIR=${DEBIAN_PLAYBOOKS}/.ansible-playbooks-venv
+    # install ansible in a new Python 2 virtual environment within tjhe ansible-playbooks clone
+    ANSIBLE_VENV_DIR=${PLAYBOOKS_REPO}/.venv-ansible-playbooks
     if [ ! -d "${ANSIBLE_VENV_DIR}" ]; then
         virtualenv ${ANSIBLE_VENV_DIR} --system-site-packages
         source ${ANSIBLE_VENV_DIR}/bin/activate
-        pip install ansible
+        pip install ansible pywinrm
         deactivate
     fi
 
