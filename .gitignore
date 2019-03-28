@@ -1,4 +1,4 @@
-.ansible-venv
+.ansible-playbooks-venv
 *.retry
 .venv*
 .vscode
