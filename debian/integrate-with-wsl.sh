@@ -26,13 +26,22 @@ function integrate_with_wsl {
     if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
         git clone git@github.com:tmcphillips/ansible-playbooks.git ${PLAYBOOKS_REPO}
     fi
-    PLAYBOOKS=${PLAYBOOKS_REPO}/debian
+    DEBIAN_PLAYBOOKS=${PLAYBOOKS_REPO}/debian
+
+    # install ansible in a new Python 2 virtual environment with the debian playbooks
+    ANSIBLE_VENV_DIR=${DEBIAN_PLAYBOOKS}/.ansible-playbooks-venv
+    if [ ! -d "${ANSIBLE_VENV_DIR}" ]; then
+        virtualenv ${ANSIBLE_VENV_DIR} --system-site-packages
+        source ${ANSIBLE_VENV_DIR}/bin/activate
+        pip install ansible
+        deactivate
+    fi
 
     # install custom .bashrc file and create .bashrc.d directory
-    cp ${PLAYBOOKS}/bashrc_d/wsl.bashrc ${HOME}/.bashrc
+    cp ${DEBIAN_PLAYBOOKS}/bashrc_d/wsl.bashrc ${HOME}/.bashrc
     BASHRC_D=${HOME}/.bashrc.d
     mkdir -p ${BASHRC_D}
-    cp ${PLAYBOOKS}/bashrc_d/customize_bash.sh ${BASHRC_D}
+    cp ${DEBIAN_PLAYBOOKS}/bashrc_d/customize_bash.sh ${BASHRC_D}
 }
 
 integrate_with_wsl
