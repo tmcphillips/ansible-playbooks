@@ -7,7 +7,11 @@ function integrate_with_wsl {
 
     # enable access to Unix permissions on files stored on mounted volumes
     echo $password | sudo cp etc/wsl.conf /etc/wsl.conf
-
+    echo
+    echo
+    echo "Restart the LxxsManager process via Windows Task Manager to effect changes to /etc/wsl.conf"
+    echo
+    
     # compute location of home directory of corresponding Windows account
     WINHOME=/mnt/c/Users/${USER}
 
