@@ -2,6 +2,12 @@
 
 function integrate_with_wsl {
 
+    # request user password for invoking commands using sudo
+    read -s -p "SUDO password: " password
+
+    # enable access to Unix permissions on files stored on mounted volumes
+    echo $password | sudo cp etc/wsl.conf /etc/wsl.conf
+
     # compute location of home directory of corresponding Windows account
     WINHOME=/mnt/c/Users/${USER}
 
