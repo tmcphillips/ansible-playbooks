@@ -1,0 +1,14 @@
+---
+
+- name: list windows environment variables
+  hosts: windows
+  vars_files: ~/.ansible/windows_credentials.yml
+  tasks:  
+
+  - name: capture output of get-childitem in the env_vars variable
+    register: setup_facts
+    setup:
+
+  - name: print list of setup facts to the console
+    debug:
+      var: setup_facts.ansible_facts
