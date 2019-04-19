@@ -1,0 +1,34 @@
+---
+
+- name: install yw jar developed by Gonzaga University students
+  hosts: 127.0.0.1
+  connection: local
+  become: no
+  tasks:
+
+  - name: create a directory for holding yesworkflow jar files
+    file:
+        path: ~/.yw/jars
+        state: directory
+        mode: 0755
+
+  - name: download and install custom yw jar file
+    get_url:
+        url: https://github.com/aniehuser/senior-design-group10/raw/master/yesworkflow-4_12_2019.jar
+        dest: ~/.yw/jars/
+        mode: 0644
+
+  - name: update the symbolic link yw-gonzaga.jar to point to the newly download jar
+    file:
+        src: ~/.yw/jars/yesworkflow-4_12_2019.jar
+        dest: ~/.yw/jars/yw-gonzaga.jar
+        state: link
+
+  - name: create and set contents of an initializer script to be run by bash at login
+    copy:
+        dest:  ~/.bashrc.d/yw-gonzaga.sh
+        content: |
+            # define an alias for running the yw_gonzaga jar
+            alias yw-gonzaga='java -jar ~/.yw/jars/yw-gonzaga.jar'
+        mode: 0644
+
