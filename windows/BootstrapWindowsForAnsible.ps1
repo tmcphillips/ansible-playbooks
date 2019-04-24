@@ -28,17 +28,46 @@ Write-Host "BOOTSTRAP --> Download and execute script for enabling remote system
 Invoke-WebRequest https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -Outfile ConfigureRemotingForAnsible.ps1
 PowerShell.exe -File ConfigureRemotingForAnsible.ps1
 
-# enable WSL subsystem
 Write-Host "BOOTSTRAP --> Enable Windows Subsystem for Linux...";
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
-# ensure the .ssh directory exists
+if ($null -eq (Get-Command "choco.exe" -ErrorAction SilentlyContinue)) {
+    Write-Host "BOOTSTRAP --> Install Chocolatey...";
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+} else {
+    Write-Host "BOOTSTRAP --> Chocolatey already installed...";
+}
 
-# copy ssh keys to .ssh directory
+if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue)) {
+    Write-Host "BOOTSTRAP --> Install Git...";
+    choco upgrade git
+} else {
+    Write-Host "BOOTSTRAP --> Git already installed...";
+}
 
-# ensure the GitRepos directory exists
+Write-Host "BOOTSTRAP --> Get the user's credentials";
+$UserCredential = Get-Credential -Message "Enter name and password for your Windows account"
 
-# install git
+Write-Host "BOOTSTRAP --> Run the user account bootstrap script as the user...";
+$Job = Start-Job -Credential $UserCredential {
 
-# clone the ansible-playbooks repo
+    Write-Host "BOOTSTRAP --> Work in user's home directory...";
+    Set-Location $Env:HOMEPATH
 
+    if (-Not (Test-Path -Path .\.ssh)) {
+        Write-Host "BOOTSTRAP --> Create the .ssh directory...";
+        New-Item -ItemType directory -Path .ssh
+    }
+
+    # copy ssh keys to .ssh directory
+
+
+    if (-Not (Test-Path -Path .\GitRepos)) {
+        Write-Host "BOOTSTRAP --> Create the GitRepos directory...";
+        New-Item -ItemType directory -Path GitRepos
+    }
+}
+
+Wait-Job $Job
+$JobResult = Receive-Job -Job $Job
+$JobResult
