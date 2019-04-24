@@ -1,5 +1,5 @@
 
-################################################################################################################################################
+#################################################################################################################################################################################
 # How to run this script on a new installation of Windows:
 #
 # 1. Start a PowerShell instance running as Administrator.
@@ -10,13 +10,13 @@
 #
 # 3. Download the script directly from GitHub:
 #
-#       Invoke-WebRequest https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/windows/bootstrap.ps1 -OutFile BootstrapWindowsForAnsible.ps1
+#       Invoke-WebRequest https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/windows/BootstrapWindowsForAnsible.ps1 -OutFile BootstrapWindowsForAnsible.ps1
 #
 # 4. Execute the script:
 #
 #       PowerShell.exe -ExecutionPolicy RemoteSigned -File BootstrapWindowsForAnsible.ps1
 #
-################################################################################################################################################
+#################################################################################################################################################################################
 
 Write-Host "BOOTSTRAP --> Enable execution of locally authored and signed remote PowerShell scripts...";
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine # -Confirm
@@ -29,6 +29,8 @@ Invoke-WebRequest https://raw.githubusercontent.com/ansible/ansible/devel/exampl
 PowerShell.exe -File ConfigureRemotingForAnsible.ps1
 
 # enable WSL subsystem
+Write-Host "BOOTSTRAP --> Enable Windows Subsystem for Linux...";
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
 # ensure the .ssh directory exists
 
