@@ -10,11 +10,11 @@
 #
 # 3. Download the script directly from GitHub:
 #
-#       Invoke-WebRequest https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/windows/bootstrap.ps1 -OutFile bootstrap.ps1
+#       Invoke-WebRequest https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/windows/bootstrap.ps1 -OutFile BootstrapWindowsForAnsible.ps1
 #
 # 4. Execute the script:
 #
-#       PowerShell.exe -ExecutionPolicy RemoteSigned -File bootstrap.ps1
+#       PowerShell.exe -ExecutionPolicy RemoteSigned -File BootstrapWindowsForAnsible.ps1
 #
 ################################################################################################################################################
 
