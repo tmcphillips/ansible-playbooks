@@ -48,19 +48,26 @@ if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue)) {
 Write-Host "BOOTSTRAP --> Get the user's credentials";
 $UserCredential = Get-Credential -Message "Enter name and password for your Windows account"
 
+
+$SshKeySourceDir = Read-Host "Enter directory containing files to copy to .ssh directory"
+
 Write-Host "BOOTSTRAP --> Run the user account bootstrap script as the user...";
 $Job = Start-Job -Credential $UserCredential {
 
     Write-Host "BOOTSTRAP --> Work in user's home directory...";
     Set-Location $Env:HOMEPATH
 
-    if (-Not (Test-Path -Path .\.ssh)) {
-        Write-Host "BOOTSTRAP --> Create the .ssh directory...";
-        New-Item -ItemType directory -Path .ssh
+    $UserSshDir = "$Env:HOMEPATH\.ssh"
+
+    if (-Not (Test-Path -Path $UserSshDir)) {
+        Write-Host "BOOTSTRAP --> Create the user's .ssh directory...";
+        New-Item -ItemType directory -Path $UserSshDir
     }
 
-    # copy ssh keys to .ssh directory
-
+    if ($using:SshKeySourceDir) {
+        Write-Host "BOOTSTRAP --> Copy keys to the user's .ssh directory...";
+        Copy-Item "$using:SshKeySourceDir\*" -Destination $UserSshDir
+    }
 
     if (-Not (Test-Path -Path .\GitRepos)) {
         Write-Host "BOOTSTRAP --> Create the GitRepos directory...";
