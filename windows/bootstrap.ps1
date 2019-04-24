@@ -15,13 +15,18 @@
 # 4. Execute the script:
 #
 #       PowerShell.exe -ExecutionPolicy RemoteSigned -File bootstrap.ps1
+#
 ################################################################################################################################################
 
-# permanently enable PowerShell script execution
-Write-Output "BOOTSTRAP | Enable execution of locally authored and signed remote PowerShell scripts...";
+Write-Host "BOOTSTRAP --> Enable execution of locally authored and signed remote PowerShell scripts...";
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine # -Confirm
-Write-Output "BOOTSTRAP | Display PowerShell execution policy...";
+Write-Host "BOOTSTRAP --> Display PowerShell execution policy...";
 get-executionpolicy -List
+
+Write-Host ""
+Write-Host "BOOTSTRAP --> Download and execute script for enabling remote system management by Ansible using WinRM...";
+Invoke-WebRequest https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -Outfile ConfigureRemotingForAnsible.ps1
+PowerShell.exe -File ConfigureRemotingForAnsible.ps1
 
 # enable WSL subsystem
 
