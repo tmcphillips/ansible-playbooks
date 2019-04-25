@@ -53,15 +53,6 @@ if ($null -eq (Get-Command "choco.exe" -ErrorAction SilentlyContinue)) {
     Out-Log "Chocolatey already installed..."
 }
 
-
-
-if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue)) {
-    Out-Log "Install Git..."
-    choco upgrade git
-} else {
-    Out-Log "Git already installed...";
-}
-
 Out-Log "Get the user's credentials"
 $UserCredential = Get-Credential -Message "Enter name and password for your Windows account"
 

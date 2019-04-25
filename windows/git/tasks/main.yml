@@ -1,0 +1,14 @@
+---
+
+- name: download and install the Go MSI package using Chocolatey
+  win_chocolatey:
+    name: git
+    state: present
+
+- name: configure global git settings
+  win_shell: |
+    git config --global user.email "tmcphillips@absoluteflow.com"
+    git config --global user.name "Timothy McPhillips"
+    git config --global core.fileMode false                       # ignore file permission changes in local clone
+    git config --global core.eol lf                               # force all line-endings to LF on checkout
+    git config --global core.autocrlf input                       # convert CRLF line-endings to LF on commit
