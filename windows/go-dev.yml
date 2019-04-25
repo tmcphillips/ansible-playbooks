@@ -1,0 +1,7 @@
+---
+
+- name: install go development environment
+  hosts: windows
+  vars_files: ~/.ansible/windows_credentials.yml
+  roles:
+    - golang

@@ -1,0 +1,11 @@
+---
+
+- name: download and install the Go MSI package using Chocolatey
+  win_chocolatey:
+    name: golang
+    state: present
+
+- name: create go workspace directories
+  win_file:
+    path: "{{ ansible_env.GOPATH }}/src"
+    state: directory

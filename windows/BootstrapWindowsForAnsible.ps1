@@ -47,9 +47,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 if ($null -eq (Get-Command "choco.exe" -ErrorAction SilentlyContinue)) {
     Out-Log "Install Chocolatey..."
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    Out-Log "Disable enhanced exit codes not yet supported by Ansible..."
+    choco feature disable --name="'useEnhancedExitCodes'" -y
 } else {
     Out-Log "Chocolatey already installed..."
 }
+
+
 
 if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue)) {
     Out-Log "Install Git..."
