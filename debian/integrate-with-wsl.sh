@@ -6,8 +6,10 @@ function integrate_with_wsl {
     read -s -p "SUDO password: " password
 
     # enable access to Unix permissions on files stored on mounted volumes
-    echo $password | sudo cp etc/wsl.conf /etc/wsl.conf
-    printf "\n\n* Restart the LxxsManager service via Windows Task Manager to effect changes to /etc/wsl.conf *\n\n"
+    if [ ! -f /etc/wsl.conf ] || [ $(diff etc/wsl.conf /etc/wsl.conf) ] ; then
+        echo $password | sudo cp etc/wsl.conf /etc/wsl.conf
+        printf "\n\n* Restart the LxxsManager service via Windows Task Manager to effect changes to /etc/wsl.conf *\n\n"
+    fi
 
     # compute location of home directory of corresponding Windows account
     WINHOME=/mnt/c/Users/${USER}
@@ -16,6 +18,10 @@ function integrate_with_wsl {
     if [ ! -L ${HOME}/.ssh ]; then
         ln -s ${WINHOME}/.ssh ${HOME}/.ssh
     fi
+
+    # set correct permissions on Windows account .ssh directory and its contents
+    chmod 700 ${WINHOME}/.ssh
+    chmod 600 ${WINHOME}/.ssh/*
 
     # share the .aws directory with the one in the home directory of the corresponding Windows account
     if [ ! -L ${HOME}/.aws ]; then
