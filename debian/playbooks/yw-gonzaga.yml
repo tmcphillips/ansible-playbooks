@@ -7,3 +7,4 @@
   roles:
     - git
     - jdk8
+    - yw_gonzaga_jar
