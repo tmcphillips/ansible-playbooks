@@ -2,8 +2,8 @@
 
 # Download and invoke this script in a new Debian environment:
 #
-#   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/debian/bootstrap.sh -O bootstrap.sh
-#   . bootstrap.sh
+#   wget --no-check-certificate https://raw.githubusercontent.com/tmcphillips/ansible-playbooks/master/debian/scripts/bootstrap_debian.sh -O bootstrap_debian.sh
+#   . bootstrap_debian.sh
 
 function bootstrap_ansible_on_debian {
 

@@ -1,0 +1,9 @@
+---
+
+- name: work with YW gonzaga edition
+  hosts: 127.0.0.1
+  connection: local
+  vars_files: ~/.ansible/windows_credentials.yml
+  roles:
+    - git
+    - jdk8
