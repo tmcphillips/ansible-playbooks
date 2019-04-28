@@ -1,0 +1,6 @@
+---
+
+- name: download and install Google Chrome using Chocolatey
+  win_chocolatey:
+    name: googlechrome
+    state: present
