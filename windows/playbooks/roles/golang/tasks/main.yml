@@ -3,7 +3,7 @@
 - name: download and install the Go MSI package using Chocolatey
   win_chocolatey:
     name: golang
-    state: present
+    state: latest
 
 - name: create go workspace directories
   win_file:
