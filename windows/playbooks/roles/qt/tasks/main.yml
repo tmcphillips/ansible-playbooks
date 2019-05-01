@@ -1,0 +1,6 @@
+- name: Download the Qt online installer for Windows
+  win_get_url:
+    url: http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
+    dest: C:\Temp
+
+
