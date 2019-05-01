@@ -1,0 +1,7 @@
+---
+
+- name: work with OpenRefine provenance project
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - json-utils

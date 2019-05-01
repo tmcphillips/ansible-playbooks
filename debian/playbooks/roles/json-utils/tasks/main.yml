@@ -1,0 +1,6 @@
+- name: download and install jd for doing JSON diff
+  become: true
+  get_url:
+      url: https://github.com/josephburnett/jd/releases/download/v1.1/jd
+      dest: /usr/local/bin
+      mode: 0555
