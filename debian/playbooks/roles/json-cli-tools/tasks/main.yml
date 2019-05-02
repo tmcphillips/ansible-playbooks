@@ -4,3 +4,9 @@
       url: https://github.com/josephburnett/jd/releases/download/v1.1/jd
       dest: /usr/local/bin
       mode: 0555
+
+- name: install the jq command for command-line processing and printing of JSON files
+  become: true
+  apt:
+      name:
+        - jq
