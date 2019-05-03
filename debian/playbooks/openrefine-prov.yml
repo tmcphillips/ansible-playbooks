@@ -4,4 +4,7 @@
   hosts: 127.0.0.1
   connection: local
   roles:
-    - json-utils
+    - git
+    - jdk8
+    - json-cli-tools
+    - openrefine

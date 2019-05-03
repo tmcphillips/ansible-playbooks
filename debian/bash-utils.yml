@@ -5,12 +5,11 @@
   connection: local
   become: yes
   tasks:
-  
+
   - name: install command-line utilities
     apt:
-        name: 
+        name:
           - curl
-          - jq
           - tree
           - unzip
         update_cache: yes
