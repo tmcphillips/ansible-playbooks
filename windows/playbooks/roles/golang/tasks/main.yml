@@ -9,3 +9,9 @@
   win_file:
     path: "{{ ansible_env.GOPATH }}/src"
     state: directory
+
+- name: install the goreturns Go library to work with VS Code
+  win_shell: go get -v github.com/sqs/goreturns
+
+- name: install the gocode Go library to work with VS Code
+  win_shell: go get -v github.com/mdempsky/gocode

@@ -5,6 +5,5 @@
   vars_files: ~/.ansible/windows_credentials.yml
   roles:
     - git
-    - andlabs
     - golang
     - vscode
