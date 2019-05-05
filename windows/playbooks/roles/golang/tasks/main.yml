@@ -10,8 +10,27 @@
     path: "{{ ansible_env.GOPATH }}/src"
     state: directory
 
-- name: install the goreturns Go library to work with VS Code
+- name: install goreturns to work with VS Code
   win_shell: go get -v github.com/sqs/goreturns
 
-- name: install the gocode Go library to work with VS Code
+- name: install gocode to work with VS Code
   win_shell: go get -v github.com/mdempsky/gocode
+
+- name: install godef to work with VS Code
+  win_shell: go get -v github.com/rogpeppe/godef
+
+- name: install gopkgs to work with VS Code
+  win_shell: go get -v github.com/uudashr/gopkgs/cmd/gopkgs
+
+- name: install dlv to work with VS Code
+  win_shell: go get -v github.com/go-delve/delve/cmd/dlv
+
+- name: install dlv to work with VS Code
+  win_shell: go get -v golang.org/x/tools/cmd/gorename
+
+
+  # go-outline
+  # go-symbols
+  # guru
+  # gocode-gomod
+  # golint
