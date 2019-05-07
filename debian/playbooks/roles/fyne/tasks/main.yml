@@ -1,0 +1,18 @@
+---
+
+- name: install X11 dependency
+  become: yes
+  apt:
+    name: xorg-dev
+    update_cache: yes
+    state: latest
+
+- name: install OpenGL dependency
+  become: yes
+  apt:
+    name: libgl1-mesa-dev
+    update_cache: yes
+    state: latest
+
+- name: install the Fyne API for Go GUI development
+  shell: /usr/local/go/bin/go get -u fyne.io/fyne
