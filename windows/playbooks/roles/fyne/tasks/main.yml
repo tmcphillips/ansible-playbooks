@@ -1,0 +1,9 @@
+---
+
+- name: download and install MinGW for the GCC compiler
+  win_chocolatey:
+    name: mingw
+    state: latest
+
+- name: install the Fyne API for Go GUI development
+  win_shell: go get -u fyne.io/fyne
