@@ -6,4 +6,5 @@
   roles:
     - git
     - golang
+    - x11
     - fyne

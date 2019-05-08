@@ -1,0 +1,17 @@
+---
+
+- name: install basic X11 applications
+  become: yes
+  apt:
+      name: x11-apps
+      update_cache: yes
+      state: latest
+
+- name: create and set contents of an X11 initializer script to be run by bash at login
+  copy:
+      dest:  ~/.bashrc.d/x11.sh
+      content: |
+        export DISPLAY=0:0
+      mode: 0644
+
+
