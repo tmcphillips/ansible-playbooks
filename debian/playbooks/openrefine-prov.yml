@@ -4,9 +4,11 @@
   hosts: 127.0.0.1
   connection: local
   roles:
-#    - git
-#    - jdk8
-#    - json-cli-tools
-#    - openrefine
-#    - python3
-    - openrefine-prov
+    - git
+    - jdk8
+    - json-cli-tools
+    - openrefine
+    - python3
+    - golang-1.9
+    - lgo
+    - openrefine-prov-repo

@@ -5,6 +5,6 @@
   connection: local
   roles:
     - git
-    - golang
+    - golang-12.5
     - x11
     - fyne

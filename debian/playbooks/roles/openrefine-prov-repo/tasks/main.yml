@@ -20,3 +20,8 @@
     name: jupyter
     virtualenv: ~/GitRepos/openrefine-provenance/.venv-or-prov
 
+- name:
+  shell: |
+    . ~/GitRepos/openrefine-provenance/.venv-or-prov/bin/activate
+    PATH=$PATH:/usr/local/go/bin python ~/go/src/github.com/yunabe/lgo/bin/install_kernel
+    deactivate

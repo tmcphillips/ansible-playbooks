@@ -1,0 +1,37 @@
+---
+
+- name: install libzmq3-dev
+  become: yes
+  apt:
+      name: libzmq3-dev
+      update_cache: yes
+      state: latest
+
+- name: install pkg-config
+  become: yes
+  apt:
+      name: pkg-config
+      update_cache: yes
+      state: latest
+
+- name: install the lgo package for supporting Go in Jupyter notebookes
+  shell: |
+    /usr/local/go/bin/go get -u github.com/yunabe/lgo/cmd/lgo
+    /usr/local/go/bin/go get -d github.com/yunabe/lgo/cmd/lgo-internal
+
+- name: create the lgo directory
+  file:
+    path: ~/.lgo
+    state: directory
+
+- name: create and set contents of an initializer script to be run by bash at login
+  copy:
+      dest:  ~/.bashrc.d/lgo.sh
+      content: |
+          export LGOPATH=~/.lgo
+      mode: 0644
+
+- name: install lgo tool into LGOPATH
+  shell: |
+    LGOPATH=~/.lgo PATH=$PATH:/usr/local/go/bin lgo install
+

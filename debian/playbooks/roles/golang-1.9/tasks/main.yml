@@ -1,10 +1,16 @@
 ---
 
-- name: download and expand Go 1.12.5
+- name: delete existing installation of Go
+  become: yes
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: download and expand Go 1.9.7
   become: yes
   unarchive:
     remote_src: yes
-    src: https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+    src: https://dl.google.com/go/go1.9.7.linux-amd64.tar.gz
     dest: /usr/local/
 
 - name: create and set contents of an initializer script to be run by bash at login
@@ -13,8 +19,3 @@
       content: |
           export PATH=$PATH:/usr/local/go/bin
       mode: 0644
-
-# - name: create go workspace directories
-#   win_file:
-#     path: "{{ ansible_env.GOPATH }}/src"
-#     state: directory
