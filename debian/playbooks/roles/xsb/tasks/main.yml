@@ -1,0 +1,21 @@
+---
+
+- name: download and expand XSB 3.8
+  unarchive:
+      remote_src: yes
+      src: https://managedway.dl.sourceforge.net/project/xsb/xsb/3.8%20Three-Buck%20Chuck/XSB38.tar.gz
+      dest: ${HOME}
+
+- name: configure and build XSB
+  shell: |
+    cd ${HOME}/XSB/build
+    ./configure
+    ./makexsb
+
+- name: create and set contents of script adding XSB bin directory to $PATH at loginn
+  copy:
+      dest:  ~/.bashrc.d/xsb.sh
+      content: |
+          export XSB_DIR=~/XSB
+          export PATH=$PATH:$XSB_DIR/bin
+      mode: 0644
