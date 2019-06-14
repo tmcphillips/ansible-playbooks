@@ -1,0 +1,9 @@
+---
+
+- name: install SKOPE development environment
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - git
+    - gdal
+    - golang-12.5

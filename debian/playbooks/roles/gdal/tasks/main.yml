@@ -1,0 +1,8 @@
+---
+
+- name: install gdal
+  become: yes
+  apt:
+    name: gdal-bin
+    update_cache: yes
+    state: latest
