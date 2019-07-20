@@ -1,0 +1,33 @@
+---
+
+- name: clone the skope-timeseries Git repo
+  git:
+      repo: https://github.com/openskope/timeseries-service
+      dest: ~/GitRepos/timeseries-service
+
+- name: create Python3 virtual environment in the repo
+  shell: python3 -m venv ~/GitRepos/timeseries-service/.venv-timeseries-service --system-site-packages
+
+# the next step is necessary when using Python 3.5 because pip is not bundled with Python
+- name: install pip3 in virtual environment
+  shell: |
+    curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+    . ~/GitRepos/timeseries-service/.venv-timeseries-service/bin/activate
+    python /tmp/get-pip.py
+
+- name: install Python dependencies
+  pip:
+    virtualenv: ~/GitRepos/timeseries-service/.venv-timeseries-service
+    requirements: ~/GitRepos/timeseries-service/requirements.txt
+
+- name: install the skope module under development modules
+  pip:
+    virtualenv: ~/GitRepos/timeseries-service/.venv-timeseries-service
+    name: ~/GitRepos/timeseries-service/python/skope
+    editable: true
+
+- name: install the skope module under development modules
+  pip:
+    virtualenv: ~/GitRepos/timeseries-service/.venv-timeseries-service
+    name: ~/GitRepos/timeseries-service/python/skope_service
+    editable: true

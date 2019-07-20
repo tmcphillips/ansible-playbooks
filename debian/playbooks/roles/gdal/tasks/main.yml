@@ -6,3 +6,10 @@
     name: gdal-bin
     update_cache: yes
     state: latest
+
+- name: globally install python3-gdal library
+  become: yes
+  apt:
+    name: python3-gdal
+    update_cache: yes
+    state: latest
