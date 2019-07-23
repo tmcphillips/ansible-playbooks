@@ -28,7 +28,7 @@ function bootstrap_ansible_on_debian {
     ANSIBLE_VENV=${BOOTSTRAP_TEMP_DIR}/ansible-venv
     virtualenv ${ANSIBLE_VENV} --system-site-packages
     source ${ANSIBLE_VENV}/bin/activate
-    pip install ansible
+    pip install pyyaml ansible
 
     # enter playbooks directory
     cd ${ANSIBLE_PLAYBOOKS}/debian

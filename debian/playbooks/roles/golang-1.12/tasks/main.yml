@@ -6,11 +6,11 @@
     path: /usr/local/go
     state: absent
 
-- name: download and expand Go 1.12.5
+- name: download and expand Go 1.12.7
   become: yes
   unarchive:
     remote_src: yes
-    src: https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+    src: https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
     dest: /usr/local/
 
 - name: create and set contents of an initializer script to be run by bash at login

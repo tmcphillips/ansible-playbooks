@@ -46,7 +46,7 @@ function integrate_with_wsl {
     if [ ! -d "${ANSIBLE_VENV_DIR}" ]; then
         virtualenv ${ANSIBLE_VENV_DIR} --system-site-packages
         source ${ANSIBLE_VENV_DIR}/bin/activate
-        pip install ansible pywinrm
+        pip install pyyaml ansible pywinrm
         deactivate
     fi
 
