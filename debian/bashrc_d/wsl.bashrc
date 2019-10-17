@@ -5,6 +5,9 @@ export GITREPOS=${WINHOME}/GitRepos
 export PLAYBOOKS_REPO=${GITREPOS}/ansible-playbooks
 export PLAYBOOKS=${PLAYBOOKS_REPO}/debian
 
+# ensure we start in WSL home directory
+cd $HOME
+
 # load configuration files in bashrc_d
 for filename in ~/.bashrc.d/*.sh; do
     source $filename
