@@ -1,0 +1,22 @@
+---
+
+- name: delete existing installation of Go
+  become: yes
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: download and expand Go 1.13
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
+    dest: /usr/local/
+
+- name: create and set contents of an initializer script to be run by bash at login
+  copy:
+      dest:  ~/.bashrc.d/go-dev.sh
+      content: |
+          export PATH=$PATH:/usr/local/go/bin
+      mode: 0644
+
