@@ -1,0 +1,24 @@
+---
+
+- name: create a directory for holding antlr4 jar
+  file:
+      path: ~/.antlr4/
+      state: directory
+      mode: 0755
+
+- name: download and install the latest antlr4 jar file
+  get_url:
+      url: https://www.antlr.org/download/antlr-4.7.2-complete.jar
+      dest: ~/.antlr4/
+      mode: 0644
+
+- name: create and set contents of an initializer script to be run by bash at login
+  copy:
+      dest:  ~/.bashrc.d/antlr4-setup.sh
+      content: |
+          # define an alias for running antlr4
+          alias antlr4='java -jar ~/.antlr4/antlr-4.7.2-complete.jar'
+      mode: 0644
+
+- name: install the Go target for ANTLR4
+  shell: /usr/local/go/bin/go get github.com/antlr/antlr4/runtime/Go/antlr
