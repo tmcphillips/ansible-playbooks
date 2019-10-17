@@ -1,0 +1,11 @@
+---
+
+- name: set up development tools for knowt-it-all
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - git
+    - make
+    - jdk8
+    - golang-1.13
+    - antlr4
