@@ -16,8 +16,11 @@
   copy:
       dest:  ~/.bashrc.d/antlr4-setup.sh
       content: |
+          # define environmental variable containing path to ANTLR jar file
+          export ANTLR4_JAR=~/.antlr4/antlr-4.7.2-complete.jar
+
           # define an alias for running antlr4
-          alias antlr4='java -jar ~/.antlr4/antlr-4.7.2-complete.jar'
+          alias antlr4='java -jar $ANTLR4_JAR'
       mode: 0644
 
 - name: install the Go target for ANTLR4
