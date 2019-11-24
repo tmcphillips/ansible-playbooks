@@ -1,0 +1,19 @@
+# file: inventory.yml
+
+all:
+
+  hosts:
+    ariadne:
+      ansible_host: 172.24.1.243
+    circe:
+      ansible_host: 172.24.1.244
+
+  vars:
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_server_cert_validation: ignore
+
+windows:
+    hosts:
+      ariadne:
+      circe:
