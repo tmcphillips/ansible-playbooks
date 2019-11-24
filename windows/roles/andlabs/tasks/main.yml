@@ -1,9 +1,0 @@
----
-
-- name: download and install MinGW for the GCC compiler
-  win_chocolatey:
-    name: mingw
-    state: latest
-
-- name: install the andlabs UI library for Go GUI development
-  win_shell:  go get github.com/andlabs/ui/...
