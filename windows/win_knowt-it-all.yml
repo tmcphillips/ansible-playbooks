@@ -1,0 +1,7 @@
+---
+
+- name: install knowt-it-all development environment
+  hosts: windows
+  roles:
+    - win_jdk8
+    - win_golang

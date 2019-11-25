@@ -4,4 +4,4 @@
   hosts: windows
   vars_files: ~/.ansible/windows_credentials.yml
   roles:
-    - chrome
+    - win_chrome
