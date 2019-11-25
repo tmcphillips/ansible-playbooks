@@ -1,19 +1,22 @@
 # file: inventory.yml
 
-all:
+all:                                  # declare all hosts and globally applicable variables
 
-  hosts:
-    ariadne:
-      ansible_host: 172.24.1.243
+  hosts:                              # list all hosts below using the host alias syntax shown
+    ariadne:                          # host alias
+      ansible_host: 172.24.1.243      # IP address of the host
     circe:
       ansible_host: 172.24.1.244
 
-  vars:
-    ansible_port: 5986
-    ansible_connection: winrm
-    ansible_winrm_server_cert_validation: ignore
+# vars:                              # uncomment to define variables that apply to all hosts
 
 windows:
-    hosts:
-      ariadne:
-      circe:
+
+  hosts:
+    ariadne:
+    circe:
+
+  vars:
+    ansible_port: 5986                            # connect via https to the target system
+    ansible_connection: winrm                     # use the winrm protocol rather than ssh
+    ansible_winrm_server_cert_validation: ignore  # allow self-signed certificates on target systems
