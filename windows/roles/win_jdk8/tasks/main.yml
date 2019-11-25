@@ -1,0 +1,6 @@
+---
+
+- name: install JDK 8
+  win_chocolatey:
+    name: jdk8
+    state: present
