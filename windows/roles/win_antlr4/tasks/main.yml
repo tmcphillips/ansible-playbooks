@@ -16,3 +16,8 @@
     level: user
     name: ANTLR4_JAR
     value: "{{ antlr4_jar_path }}"
+
+- name: add to powershell profile a script that defines an antlr4 funtion
+  win_copy:
+    src: antlr4.ps1
+    dest: 'C:\Users\tmcphill\.powershell\'
