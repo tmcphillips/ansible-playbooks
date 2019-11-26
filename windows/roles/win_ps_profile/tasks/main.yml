@@ -1,0 +1,12 @@
+---
+
+- name: copy minimal powershell profile to standard location
+  win_copy:
+    src: profile.ps1
+    dest: '{{ ps_profile_file }}'
+
+- name: create directory for initialization scripts run by the above profile
+  win_file:
+    path: '{{ ps_profile_init_dir }}'
+    state: directory
+

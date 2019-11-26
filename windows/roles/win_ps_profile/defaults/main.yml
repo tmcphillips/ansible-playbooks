@@ -1,0 +1,4 @@
+
+
+ps_profile_init_dir: '{{ ansible_env.USERPROFILE }}\.ps_profile'
+ps_profile_file: '{{ ansible_env.USERPROFILE }}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'

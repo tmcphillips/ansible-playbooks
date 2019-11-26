@@ -20,4 +20,4 @@
 - name: add to powershell profile a script that defines an antlr4 funtion
   win_copy:
     src: antlr4.ps1
-    dest: 'C:\Users\tmcphill\.powershell\'
+    dest: '{{ ps_profile_init_dir }}\'
