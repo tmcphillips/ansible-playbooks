@@ -1,0 +1,6 @@
+---
+
+- name: install antlr4
+  hosts: windows
+  roles:
+    - win_antlr4

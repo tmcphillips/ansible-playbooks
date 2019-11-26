@@ -1,0 +1,13 @@
+---
+
+- name: create directory for antlr4 resources
+  win_file:
+    path: "{{ antlr4_dir }}"
+    state: directory
+
+- name: download and install the latest antlr4 jar file
+  win_get_url:
+    url: "{{ antlr4_jar_url }}"
+    dest: "{{ antlr4_jar_path }}"
+
+
