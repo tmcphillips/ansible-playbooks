@@ -1,4 +1,4 @@
-antlr4_dir: "{{ ansible_env.HOMEPATH }}/.antlr4/"
-antlr4_jar_name: "antlr-4.7.2.jar"
-antlr4_jar_path: "{{ antlr4_dir }}/{{ antlr4_jar_name }}"
-antlr4_jar_url: "https://www.antlr.org/download/antlr-4.7.2-complete.jar"
+antlr4_dir: '{{ ansible_env.USERPROFILE }}\.antlr4'
+antlr4_jar_name: 'antlr-4.7.2.jar'
+antlr4_jar_path: '{{ antlr4_dir }}\{{ antlr4_jar_name }}'
+antlr4_jar_url: 'https://www.antlr.org/download/antlr-4.7.2-complete.jar'

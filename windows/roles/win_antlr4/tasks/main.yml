@@ -10,4 +10,9 @@
     url: "{{ antlr4_jar_url }}"
     dest: "{{ antlr4_jar_path }}"
 
-
+- name: set environment variable with path to ANTLR4 jar
+  win_environment:
+    state: present
+    level: user
+    name: ANTLR4_JAR
+    value: "{{ antlr4_jar_path }}"
