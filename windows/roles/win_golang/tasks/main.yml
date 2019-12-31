@@ -5,3 +5,8 @@
     name: golang
     state: latest
 
+- name: download and install Make using Chocolatey
+  win_chocolatey:
+    name: make
+    state: latest
+
