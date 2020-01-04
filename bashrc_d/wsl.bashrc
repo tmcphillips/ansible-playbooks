@@ -1,9 +1,8 @@
 
 # set fundamental environment variables
 export WINHOME=/mnt/c/Users/${USER}
-export GITREPOS=${WINHOME}/GitRepos
-export PLAYBOOKS_REPO=${GITREPOS}/ansible-playbooks
-export PLAYBOOKS=${PLAYBOOKS_REPO}/debian
+export GITREPOS=${WINHOME}/OneDrive/GitRepos
+export PLAYBOOKS=${GITREPOS}/ansible-playbooks
 
 # ensure we start in WSL home directory
 cd $HOME

@@ -29,20 +29,24 @@ function integrate_with_wsl {
     fi
 
     # share the GitRepos directory with the one in the home directory of the corresponding Windows account
-    GITREPOS=${WINHOME}/GitRepos
+    GITREPOS=${WINHOME}/OneDrive/GitRepos
     if [ ! -L ${HOME}/GitRepos ]; then
         ln -s ${GITREPOS} ${HOME}/GitRepos
     fi
 
     # clone the ansible-playbooks repo if not already present
-    PLAYBOOKS_REPO=${GITREPOS}/ansible-playbooks
+    PLAYBOOKS=${GITREPOS}/ansible-playbooks
     if [ ! -d "${GITREPOS}/ansible-playbooks" ]; then
-        git clone git@github.com:tmcphillips/ansible-playbooks.git ${PLAYBOOKS_REPO}
+        git clone git@github.com:tmcphillips/ansible-playbooks.git ${PLAYBOOKS}
     fi
-    DEBIAN_PLAYBOOKS=${PLAYBOOKS_REPO}/debian
+    # create the virtual environments directory
+    VENV_DIR=${HOME}/.venv
+    if [ ! -L ${VENV_DIR} ]; then
+        mkdir ${VENV_DIR}
+    fi
 
-    # install ansible in a new Python 2 virtual environment within tjhe ansible-playbooks clone
-    ANSIBLE_VENV_DIR=${PLAYBOOKS_REPO}/.venv-ansible-playbooks
+    # install ansible in a new Python 2 virtual environment within the ansible-playbooks clone
+    ANSIBLE_VENV_DIR=${VENV_DIR}/ansible-playbooks
     if [ ! -d "${ANSIBLE_VENV_DIR}" ]; then
         virtualenv ${ANSIBLE_VENV_DIR} --system-site-packages
         source ${ANSIBLE_VENV_DIR}/bin/activate
@@ -51,10 +55,10 @@ function integrate_with_wsl {
     fi
 
     # install custom .bashrc file and create .bashrc.d directory
-    cp ${DEBIAN_PLAYBOOKS}/bashrc_d/wsl.bashrc ${HOME}/.bashrc
+    cp ${PLAYBOOKS}/bashrc_d/wsl.bashrc ${HOME}/.bashrc
     BASHRC_D=${HOME}/.bashrc.d
     mkdir -p ${BASHRC_D}
-    cp ${DEBIAN_PLAYBOOKS}/bashrc_d/customize_bash.sh ${BASHRC_D}
+    cp ${PLAYBOOKS}/bashrc_d/customize_bash.sh ${BASHRC_D}
 }
 
 integrate_with_wsl

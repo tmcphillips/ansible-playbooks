@@ -1,7 +1,9 @@
 ---
 
 - name: install go development environment
-  hosts: linux
+#  hosts: linux
+  hosts: 127.0.0.1
+  connection: local
   roles:
     - deb-git
     - deb-golang

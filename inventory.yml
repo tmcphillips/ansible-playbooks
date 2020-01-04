@@ -28,3 +28,12 @@ linux:
 
   hosts:
     artemis:
+
+debian:
+
+  hosts:
+    artemis:
+
+wsl2:
+
+
