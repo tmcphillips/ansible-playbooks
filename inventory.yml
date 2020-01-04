@@ -7,8 +7,22 @@ all:                                  # declare all hosts and globally applicabl
       ansible_host: 172.24.1.243      # IP address of the host
     circe:
       ansible_host: 172.24.1.244
+    artemis:
+      ansible_host: 172.24.1.247
 
 # vars:                              # uncomment to define variables that apply to all hosts
+
+windows:
+
+  hosts:
+    ariadne:
+    circe:
+    apollo:
+
+  vars:
+    ansible_port: 5986                            # connect via https to the target system
+    ansible_connection: winrm                     # use the winrm protocol rather than ssh
+    ansible_winrm_server_cert_validation: ignore  # allow self-signed certificates on target systems
 
 linux:
 
