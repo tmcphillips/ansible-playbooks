@@ -1,3 +1,0 @@
-2019/05/09 19:14:13 Install lgo to /mnt/c/Users/tmcphill/GitRepos/ansible-playbooks/debian/playbooks/~/.lgo
-2019/05/09 19:14:13 Building libstd.so
-2019/05/09 19:14:13 Failed to build libstd.so: exec: "go": executable file not found in $PATH

@@ -1,0 +1,16 @@
+# file: inventory.yml
+
+all:                                  # declare all hosts and globally applicable variables
+
+  hosts:                              # list all hosts below using the host alias syntax shown
+    ariadne:                          # host alias
+      ansible_host: 172.24.1.243      # IP address of the host
+    circe:
+      ansible_host: 172.24.1.244
+
+# vars:                              # uncomment to define variables that apply to all hosts
+
+linux:
+
+  hosts:
+    artemis:
