@@ -1,0 +1,12 @@
+---
+
+- name: install wt prov development environment
+#  hosts: linux
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - deb-git
+    - deb-python3
+    - deb-reprozip
+    - deb-sqlite3
+    - deb-graphviz

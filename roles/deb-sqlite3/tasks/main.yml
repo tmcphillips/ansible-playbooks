@@ -1,0 +1,9 @@
+---
+
+- name: install sqlite3 command-line tool
+  become: yes
+  apt:
+      name:
+        - sqlite3
+      update_cache: yes
+      state: latest

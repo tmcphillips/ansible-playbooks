@@ -1,0 +1,27 @@
+---
+
+- name: install reprozip system-level dependencies
+  become: yes
+  apt:
+      name:
+        - gcc
+        - libsqlite3-dev
+        - libssl-dev
+        - libffi-dev
+      update_cache: yes
+      state: latest
+
+- name: install reprozip python package in virtual environment
+  become: no
+  pip:
+      name:
+        - reprozip
+        - reprounzip
+      virtualenv: ~/.venv/reprozip
+      virtualenv_command: /usr/bin/python3 -m venv
+
+- name: customize reprozip installation
+  shell: |
+    . ~/.venv/reprozip/bin/activate
+    reprozip usage_report --disable
+    deactivate

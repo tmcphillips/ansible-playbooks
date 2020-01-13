@@ -1,0 +1,9 @@
+---
+
+- name: install graphviz command-line tools
+  become: yes
+  apt:
+      name:
+        - graphviz
+      update_cache: yes
+      state: latest
